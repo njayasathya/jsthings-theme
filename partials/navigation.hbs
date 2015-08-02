@@ -1,0 +1,9 @@
+<nav id="main-navigation" role="navigation" aria-label="Menú principal">
+    <ul>
+        {{#foreach navigation}}
+            <li>
+                <a class="hvr-underline-from-center nav-{{slug}}{{#if current}} active{{/if}}" role="presentation" href="{{url absolute="true"}}">{{label}}</a>
+            </li>
+        {{/foreach}}
+    </ul>
+</nav>

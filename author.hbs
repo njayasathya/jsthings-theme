@@ -1,0 +1,58 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+
+{{! Everything inside the #author tags pulls data from the author }}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        {{#author}}
+            {{#if cover}}
+            <header class="main-header author-head">
+                <img class="img-responsive author-thumb" src="{{cover}}" alt="{{name}}" nopin="nopin" itemprop="image"/>
+            </header>
+            {{/if}}
+
+            <section class="author-profile inner" itemscope="" itemtype="http://schema.org/Person">
+                <div class="title-image">
+                    {{#if image}}
+                        <figure class="author-image">
+                            <img class="img-responsive author-thumb" src="{{image}}" alt="{{name}}" nopin="nopin" itemprop="image"/>
+                        </figure>
+                    {{/if}}
+                    <h1 class="author-title" itemprop="name" rel="author">{{name}}</h1>
+                </div>
+                {{#if bio}}
+                    <h2 class="author-bio" itemprop="description">{{bio}}</h2>
+                {{/if}}
+                <div class="author-meta">
+                    {{#if location}}
+                    <p class="author-location" itemprop="address">
+                        <i class="fa fa-map-marker"></i>
+                        {{location}}</span>{{/if}}
+                    </p>
+                    {{#if website}}
+                    <p class="author-link" itemprop="url">
+                        <i class="fa fa-link"></i>
+                        <a href="{{website}}">{{website}}</a>
+                    </p>
+                    {{/if}}
+                    <p class="author-stats">
+                        <i class="fa fa-heartbeat"></i>
+                        {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}
+                    </p>
+                </div>
+            </section>
+            <hr/>
+        {{/author}}
+        </div>
+    </div>
+</div>
+
+{{! The main content area on the homepage }}
+<main class="content" role="main">
+
+    {{! The tag below includes the post loop - partials/loop.hbs }}
+    {{> "loop"}}
+
+</main>

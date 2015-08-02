@@ -1,0 +1,29 @@
+<section class="posts container">
+    <div class="row">
+        {{! This is the post loop - each post will be output using this markup }}
+        {{#foreach posts}}
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <article class="{{post_class}}" itemscope="" itemtype="http://schema.org/BlogPosting">
+                    <header class="post-header">
+                        <h2 class="post-title" itemprop="name headline"><a href="{{url}}" itemprop="url">{{{title}}}</a></h2>
+                    </header>
+                    <section class="post-excerpt">
+                        <p itemprop="description" >{{excerpt words="26"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a></p>
+                    </section>
+                    <footer class="post-meta">
+                        {{#if author.image}}<img class="img-responsive author-thumb" src="{{author.image}}" alt="{{author.name}}" nopin="nopin" />{{/if}}
+                        <span itemprop="author">{{author}}</span>
+                        <span itemprop="keywords">{{tags prefix=" en "}}</span>
+                        <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}" itemprop="datePublished">{{date format='DD/MM/YYYY'}}</time>
+                    </footer>
+                </article>
+            </div>
+        {{/foreach}}
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{! Previous/next page links - displayed on every page }}
+            {{pagination}}
+        </div>
+    </div>
+</section>
